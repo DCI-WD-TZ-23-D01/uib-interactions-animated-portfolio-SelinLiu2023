@@ -1,0 +1,385 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    /* min-width: 900px; */
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 10% 1fr 15%;
+    font-family: Helvetica;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    padding: 0 5%;
+    background-color: white;
+    box-shadow: 0 3px 10px gray;
+}
+.imgBox img{
+    width: 150px;
+}
+header a{
+    /* padding: 5px; */
+    text-decoration: none;
+    color: black;
+    /* display: flex;
+    justify-content: space-between; */
+
+}
+header nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    /* align-content: flex-end;
+    align-items: flex-start; */
+}
+.iconBox{
+    display: inline-block;
+    padding: 0 15px;
+}
+.option1{
+    display: inline-block;
+    padding: 0.3rem 1.3rem;
+}
+.aboutselect,.serviceSelect,.marketSelect,.appSelet{
+    display: none;
+}
+.aboutSelectBox,.serviceSelectBox,.marketSelectBox,.appSeletBox{
+    position: relative;
+}
+.aboutselect,.serviceSelect,.marketSelect,.appSelet{
+    background-color: #F5F5F5;
+    position: absolute;
+    box-shadow: 5px 5px 10px rgba(255, 255, 255, 1);
+    padding: 10px 10px;
+}
+.aboutselect,.serviceSelect{
+    top: 100%;
+    z-index: 10;
+}
+.marketSelect,.appSelet{
+    top: 0;
+    left: 100%;
+}
+.aboutSelectBox:hover{
+    .aboutselect{
+        display: block;
+    }    
+
+}
+.serviceSelectBox:hover{
+    .serviceSelect{
+        display: block;
+    }
+}
+.marketSelectBox:hover{
+    .marketSelect{
+        display: block;
+    }    
+}
+.appSeletBox:hover{
+    .appSelet{
+        display: block;
+    }    
+}
+.option1:hover>a{
+        color: #cdc9cf;
+}
+.option1:hover>a div:first-child{
+    scale: 2;
+    color: #FAAC04;
+}
+.option2{
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+}
+.mitArrowIcon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.aboutselect .option2:not(:last-child),
+.serviceSelect .option2:not(:last-child),
+.marketSelect .option2:not(:last-child),
+.appSelet .option2:not(:last-child)
+{
+    border-bottom: 2px solid rgba(250, 172, 4, 0.5);
+}
+
+/* ****************************for infomation Card******************************* */
+.main{
+    margin-top: 40px;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 1fr 20% 20%;
+    position: relative;
+    background: radial-gradient(#03A4ED,#004C6D);
+}
+.rotpunkt{
+    width: 50px;
+    height: 50px;
+    background-color: #FF1493;
+    border-radius: 50%;
+    /* margin: 20px auto 0 ; */
+    font-size: 30px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    animation: easeMove 1s linear infinite;
+    z-index: 20;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 10%;
+    left: 50%;
+}
+.cardoverlay{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(250, 250, 250, 0.5);
+    /* position: absolute;
+    transform: translate(-50%,-50%);
+    top: 10%;
+    left: 50%; */
+    overflow: hidden;
+    margin: 4% auto;
+}
+@keyframes easeMove{
+    0,50%,100%{
+        top: 10%;
+    }
+    25%{
+        top: calc(10% + 10px);
+    }
+    
+    75%{
+        top: calc(10% - 10px);
+    }
+}
+.rotpunkt:hover + .infoCard,.infoCard:hover{
+    transform: translate(-50%,-50%) scale(1);
+    animation-play-state: paused;
+}
+.rotpunkt:hover {
+    animation-play-state: paused;
+}
+.infoCard{
+    width: 400px;
+    height: 250px;
+    border-radius: 10%;
+    background-color: #03A9F4;
+    box-shadow: 5px 5px 10px rgba(250, 250, 250, 0.5),
+                -5px 5px 10px  rgba(250, 250, 250, 0.5),
+                5px -5px 10px  rgba(250, 250, 250, 0.5),
+                -5px -5px 10px  rgba(250, 250, 250, 0.5);
+    position: absolute;
+    top: 19%;
+    left: 57%;
+    transform: translate(-50%,-50%) scale(0);
+
+    /* z-index: -10; */
+    text-decoration: none;
+}
+.infoCard p{
+    width: 50%;
+    font-size: 30px;
+    color: white;
+    margin: 20px 40% 0;
+}
+.infoCard img{
+    width: 30%;
+    margin-top: 10%;
+    margin-left:40%;
+}
+/* ****************************for Text animation******************************* */
+
+.text1,.text2{
+    width: 60%;
+    font-size: 50px;
+    color: white;
+    text-transform: uppercase;
+    margin-left: 20%;
+    position: relative;
+    font-weight: 600;
+}
+.text1{
+    animation: text1Move 10s linear infinite;
+}
+.text2{
+    animation: text2Move 8s linear infinite;
+    animation-delay: 2s;
+}
+@keyframes text1Move{
+    0%,100%{
+        transform: translateX(0);
+    }
+    40%,80%{
+        transform: translateX(70%);
+    }
+    60%{
+        transform: translateX(55%);
+    }
+}
+@keyframes text2Move{
+    0%,100%{
+        transform: translateX(0);
+    }
+    50%{
+        transform: translateX(70%);
+    }
+}
+.textOben{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.textUnter{
+    width: 100%;
+    transform: scaleY(-1);
+    position: absolute;
+    bottom: 90px;
+    left: 0;
+    color: black;
+    color: transparent;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 30%,rgba(255,255,255,0.5) );
+    background-clip:text;
+
+}
+footer{
+    background-color: #031321;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer a{
+    text-decoration: none;
+    color: #2196F3;
+
+}
+footer div{
+    width: var(--containerWidth);
+    height: var(--containerHeight);
+    font-size: 1.5rem;
+    text-align:center;
+    margin: 50px;
+    /* padding: 10px; */
+    letter-spacing: 15px;
+    position: relative;
+    overflow: hidden;
+    /* border: 5px solid white; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+:root{
+    --blueBreit:5px;
+    --blueLang:150px;
+    --containerWidth:250px;
+    --containerHeight:60px;
+    --anmtDuration:1s;
+}
+
+footer div::after{
+    content: "";
+    position: absolute;
+    width: var(--blueLang);
+    height: var(--blueBreit);
+    top: 0;
+    left: calc(0px - var(--blueLang));
+    background: linear-gradient(to right, rgba(24, 112, 182,0.1),rgb(48, 161, 254));
+}
+footer div:hover{
+    transition-delay: calc(var(--anmtDuration) + 0.3s);
+    color: #031321;
+    background-color: rgb(21, 140, 237);
+    box-shadow: 0px 0px 20px rgb(48, 161, 254);
+}
+footer div:hover::after{
+    /* animation: blueLightAnmt 1s ease-in-out; */
+    animation: blueLightMove var(--anmtDuration) linear;
+}
+@keyframes blueLightMove{
+    0%,100%{
+        transform: translate(0,0);
+    }
+    38%{
+        /* transform: translate(calc(var(--containerWidth) + var(--blueLang) / 2),0); */
+        transform: translate(var(--containerWidth),0);
+    }
+    39%{
+        transform: translate(calc(var(--containerWidth) + var(--blueLang) / 2 - var(--blueBreit)),0) 
+        rotate(90deg);
+    }
+    50%{
+        transform: translate(calc(var(--containerWidth) + var(--blueLang) / 2 - var(--blueBreit)), var(--containerHeight)) 
+        rotate(90deg);
+    }
+    51%{
+        transform: translate(calc(var(--containerWidth) + var(--blueLang) / 2 - var(--blueBreit)), calc(var(--containerHeight) - var(--blueBreit))) 
+        rotate(180deg);
+    }
+    84%{
+        transform: translate(0, calc(var(--containerHeight) - var(--blueBreit))) 
+        rotate(180deg);
+    }
+    85%{
+        transform: translate(calc(var(--blueLang) / 2 + var(--blueBreit)), calc(var(--containerHeight) - var(--blueBreit))) 
+        rotate(270deg);
+    }
+    99%{
+        transform: translate(calc(var(--blueLang) / 2 + var(--blueBreit)), 0) 
+        rotate(270deg);
+    }
+}
+/* @keyframes blueLightAnmt{
+    0%{
+        border-top: 3px solid #031321;
+    }
+    20%{
+        border-top: 3px solid blue;
+    }
+    40%{
+        border-top: 3px solid #031321;
+
+        border-right: 3px solid blue;
+    }
+    60%{
+        border-right: 3px solid #031321;
+        border-bottom: 3px solid blue;
+    }
+    80%{
+        border-bottom: 3px solid #031321;
+
+        border-left: 3px solid blue;
+    }
+    100%{
+        border-left: 3px solid #031321;
+    }
+}
+@keyframes blackLightAnmt{
+    0%{
+        border: 3px solid transparent;
+    }
+    25%{
+        border-top: 3px solid black;
+    }
+    50%{
+        border-right: 3px solid black;
+    }
+    75%{
+        border-bottom: 3px solid black;
+    }
+    100%{
+        border-left: 3px solid black;
+    }
+} */
