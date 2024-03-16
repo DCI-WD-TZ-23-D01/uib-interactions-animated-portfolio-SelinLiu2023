@@ -5,10 +5,10 @@
 }
 body{
     width: 100vw;
-    /* min-width: 900px; */
+    /* min-width: 1600px; */
     height: 100vh;
     display: grid;
-    grid-template-rows: 10% 1fr 15%;
+    grid-template-rows: 10% 1fr;
     font-family: Helvetica;
 }
 header{
@@ -113,14 +113,32 @@ header nav{
 }
 
 /* ****************************for infomation Card******************************* */
+:root{
+    --rotpunktTop:60px;
+}
 .main{
     margin-top: 40px;
     width: 100vw;
     display: grid;
-    grid-template-rows: 1fr 20% 20%;
-    position: relative;
+    grid-template-rows: 1fr 20% 20% 15%;
+    /* position: relative; */
     background: radial-gradient(#03A4ED,#004C6D);
+    position: relative;
 }
+.circleContainer{
+    /* position: absolute; */
+    /* top: 0;
+    left: 45%; */
+    margin-left: 40%;
+    width: 600px;
+    height: 300px;
+    clip-path: circle(0px at 240px 55px);
+    background-color: transparent;
+    /* position: relative; */
+    transition: clip-path 0.3s linear;
+    /* position: relative; */
+}
+
 .rotpunkt{
     width: 50px;
     height: 50px;
@@ -137,53 +155,47 @@ header nav{
     z-index: 20;
     position: absolute;
     transform: translate(-50%,-50%);
-    top: 10%;
+    top: var(--rotpunktTop);
     left: 50%;
-}
-.cardoverlay{
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: rgba(250, 250, 250, 0.5);
-    /* position: absolute;
-    transform: translate(-50%,-50%);
-    top: 10%;
-    left: 50%; */
-    overflow: hidden;
-    margin: 4% auto;
 }
 @keyframes easeMove{
     0,50%,100%{
-        top: 10%;
+        top: var(--rotpunktTop);
     }
     25%{
-        top: calc(10% + 10px);
+        top: calc(var(--rotpunktTop) + 10px);
     }
-    
     75%{
-        top: calc(10% - 10px);
+        top: calc(var(--rotpunktTop) - 10px);
     }
 }
 .rotpunkt:hover + .infoCard,.infoCard:hover{
-    transform: translate(-50%,-50%) scale(1);
+    /* transform: translate(-50%,-50%) scale(1); */
     animation-play-state: paused;
 }
 .rotpunkt:hover {
     animation-play-state: paused;
 }
+.rotpunkt:hover ~ .circleContainer{
+    clip-path: circle(400px at 400px 80px);
+}
 .infoCard{
+    display: block;
     width: 400px;
     height: 250px;
     border-radius: 10%;
     background-color: #03A9F4;
-    box-shadow: 5px 5px 10px rgba(250, 250, 250, 0.5),
-                -5px 5px 10px  rgba(250, 250, 250, 0.5),
-                5px -5px 10px  rgba(250, 250, 250, 0.5),
-                -5px -5px 10px  rgba(250, 250, 250, 0.5);
+    box-shadow: 10px 10px 20px rgba(250, 250, 250, 0.3),
+                -10px 10px 20px  rgba(250, 250, 250, 0.3),
+                10px -10px 20px  rgba(250, 250, 250, 0.3),
+                -10px -10px 20px  rgba(250, 250, 250, 0.3);
     position: absolute;
+    top: calc(var(--rotpunktTop) - 35px);
+    left: 48%;
+    /* position: absolute;
     top: 19%;
-    left: 57%;
-    transform: translate(-50%,-50%) scale(0);
+    left: 57%; */
+    /* transform: translate(-50%,-50%) scale(0); */
 
     /* z-index: -10; */
     text-decoration: none;
@@ -200,22 +212,8 @@ header nav{
     margin-left:40%;
 }
 /* ****************************for Text animation******************************* */
-
-.text1,.text2{
-    width: 60%;
-    font-size: 50px;
-    color: white;
-    text-transform: uppercase;
-    margin-left: 20%;
-    position: relative;
-    font-weight: 600;
-}
-.text1{
-    animation: text1Move 10s linear infinite;
-}
-.text2{
-    animation: text2Move 8s linear infinite;
-    animation-delay: 2s;
+:root{
+    --fontSize:60px;
 }
 @keyframes text1Move{
     0%,100%{
@@ -236,23 +234,46 @@ header nav{
         transform: translateX(70%);
     }
 }
-.textOben{
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+.textOben,.textOben2{
+    font-size: var(--fontSize);
+    color: white;
+    text-transform: uppercase;
+    margin-left: 20%;
+    position: relative;
+    font-weight: 600;
+    position: relative;
 }
-.textUnter{
-    width: 100%;
-    transform: scaleY(-1);
+.textOben{
+    animation: text1Move 10s linear infinite;
+}
+.textOben2{
+    animation: text2Move 8s linear infinite;
+    animation-delay: 2s;
+}
+.textOben::after,.textOben2::after{
     position: absolute;
-    bottom: 90px;
+    transform: scaleY(-1);
+    top: calc(var(--fontSize) - 10px);
     left: 0;
-    color: black;
     color: transparent;
     background: linear-gradient(to bottom, rgba(255,255,255,0) 30%,rgba(255,255,255,0.5) );
     background-clip:text;
-
+}
+.textOben::after{
+    content: "freelance";
+}
+.textOben2::after{
+    content: "web developer";
+}
+/* ****************************for footer botton animation******************************* */
+:root{
+    --blueBreit:5px;
+    --blueLang:250px;
+    --blueBreit2:5px;
+    --blueLang2:60px;
+    --containerWidth:250px;
+    --containerHeight:60px;
+    --anmtDuration:1.5s;
 }
 footer{
     background-color: #031321;
@@ -263,7 +284,6 @@ footer{
 footer a{
     text-decoration: none;
     color: #2196F3;
-
 }
 footer div{
     width: var(--containerWidth);
@@ -271,24 +291,13 @@ footer div{
     font-size: 1.5rem;
     text-align:center;
     margin: 50px;
-    /* padding: 10px; */
     letter-spacing: 15px;
     position: relative;
     overflow: hidden;
-    /* border: 5px solid white; */
-
     display: flex;
     align-items: center;
     justify-content: center;
 }
-:root{
-    --blueBreit:5px;
-    --blueLang:150px;
-    --containerWidth:250px;
-    --containerHeight:60px;
-    --anmtDuration:1s;
-}
-
 footer div::after{
     content: "";
     position: absolute;
@@ -296,90 +305,69 @@ footer div::after{
     height: var(--blueBreit);
     top: 0;
     left: calc(0px - var(--blueLang));
+    border-radius: 0  3px 3px 0;
     background: linear-gradient(to right, rgba(24, 112, 182,0.1),rgb(48, 161, 254));
+}
+footer div::before{
+    content: "";
+    position: absolute;
+    width: var(--blueBreit2);
+    height: var(--blueLang2);
+    top: calc(0px - var(--blueLang2));
+    right: 0;
+    border-radius: 0 0 3px 3px;
+    background: linear-gradient(to bottom, rgba(24, 112, 182,0.1),rgb(48, 161, 254));
 }
 footer div:hover{
     transition-delay: calc(var(--anmtDuration) + 0.3s);
     color: #031321;
     background-color: rgb(21, 140, 237);
-    box-shadow: 0px 0px 20px rgb(48, 161, 254);
+    box-shadow: 0px 0px 30px rgb(48, 161, 254);
 }
 footer div:hover::after{
-    /* animation: blueLightAnmt 1s ease-in-out; */
-    animation: blueLightMove var(--anmtDuration) linear;
+    animation: topBottomMove var(--anmtDuration) linear;
+    animation-fill-mode: forwards;
 }
-@keyframes blueLightMove{
-    0%,100%{
+footer div:hover::before{
+    animation: leftRightMove var(--anmtDuration) linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes topBottomMove{
+    0%{
         transform: translate(0,0);
     }
-    38%{
-        /* transform: translate(calc(var(--containerWidth) + var(--blueLang) / 2),0); */
-        transform: translate(var(--containerWidth),0);
-    }
-    39%{
-        transform: translate(calc(var(--containerWidth) + var(--blueLang) / 2 - var(--blueBreit)),0) 
-        rotate(90deg);
+    35%{
+        transform: translate(calc(var(--blueLang) + var(--containerWidth)),
+                                0);
     }
     50%{
-        transform: translate(calc(var(--containerWidth) + var(--blueLang) / 2 - var(--blueBreit)), var(--containerHeight)) 
-        rotate(90deg);
+        transform: translate(calc(var(--blueLang) + var(--containerWidth)),
+                            calc(var(--containerHeight) - var(--blueBreit))) 
+                    rotate(180deg);
     }
-    51%{
-        transform: translate(calc(var(--containerWidth) + var(--blueLang) / 2 - var(--blueBreit)), calc(var(--containerHeight) - var(--blueBreit))) 
-        rotate(180deg);
-    }
-    84%{
-        transform: translate(0, calc(var(--containerHeight) - var(--blueBreit))) 
-        rotate(180deg);
-    }
-    85%{
-        transform: translate(calc(var(--blueLang) / 2 + var(--blueBreit)), calc(var(--containerHeight) - var(--blueBreit))) 
-        rotate(270deg);
-    }
-    99%{
-        transform: translate(calc(var(--blueLang) / 2 + var(--blueBreit)), 0) 
-        rotate(270deg);
+    85%,100%{
+        transform: translate(0,
+                            calc(var(--containerHeight) - var(--blueBreit))) 
+                            rotate(180deg);
     }
 }
-/* @keyframes blueLightAnmt{
-    0%{
-        border-top: 3px solid #031321;
-    }
-    20%{
-        border-top: 3px solid blue;
+@keyframes leftRightMove{
+    0%,20%{
+        transform: translate(0,0);
     }
     40%{
-        border-top: 3px solid #031321;
-
-        border-right: 3px solid blue;
+        transform: translate(0,
+                            calc(var(--containerHeight) + var(--blueLang2)));
     }
-    60%{
-        border-right: 3px solid #031321;
-        border-bottom: 3px solid blue;
+    70%{
+        transform: translate(calc(0px - var(--containerWidth) + var(--blueBreit2)),
+                            calc(var(--containerHeight) + var(--blueLang2))) 
+                    rotate(180deg);
     }
-    80%{
-        border-bottom: 3px solid #031321;
-
-        border-left: 3px solid blue;
-    }
-    100%{
-        border-left: 3px solid #031321;
+    90%,100%{
+        transform: translate(calc(0px - var(--containerWidth) + var(--blueBreit2)),
+                            0) 
+                    rotate(180deg);
     }
 }
-@keyframes blackLightAnmt{
-    0%{
-        border: 3px solid transparent;
-    }
-    25%{
-        border-top: 3px solid black;
-    }
-    50%{
-        border-right: 3px solid black;
-    }
-    75%{
-        border-bottom: 3px solid black;
-    }
-    100%{
-        border-left: 3px solid black;
-    }
-} */
